@@ -36,6 +36,8 @@ static BitlyConfig *theInstance = nil;
     [twitterOAuthConsumerKey release];
     [twitterOAuthConsumerSecret release];
     [twitterOAuthSuccessCallbackURL release];
+    
+    [super dealloc];
 }
 
 //These should be the same for everyone, but can be doublechecked at https://dev.twitter.com/apps/ 
