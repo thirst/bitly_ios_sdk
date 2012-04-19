@@ -7,7 +7,6 @@
 
 #import "BitlyRequest.h"
 #import "BitlyLibUtil.h"
-#import "NSDictionary_JSONExtensions.h"
 #import "BitlyConfig.h"
 
 
@@ -104,9 +103,7 @@
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
     NSError *error = nil;
-    NSString *jsonString = [[NSString alloc] initWithData:receivedData encoding:NSUTF8StringEncoding];
-    NSDictionary *responseDict = [NSDictionary dictionaryWithJSONString:jsonString error:&error];
-    [jsonString release];
+    NSDictionary *responseDict = [NSJSONSerialization JSONObjectWithData:receivedData options:0 error:&error];
     
     if (error) {
         [delegate bitlyRequest:self failedForLongURL:self.longURL statusCode:0 statusText:@"Response could not be converted to a JSON value"];
